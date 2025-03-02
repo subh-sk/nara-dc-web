@@ -17,6 +17,13 @@ const HeaderContainer = styled.header`
   background: rgba(0, 26, 51, 0.8);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 102, 255, 0.2);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  
+  &:hover {
+    background: rgba(0, 36, 71, 0.85);
+    border-bottom: 1px solid rgba(0, 122, 255, 0.3);
+  }
 `;
 
 const Logo = styled(motion.div)`
@@ -28,6 +35,13 @@ const Logo = styled(motion.div)`
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    filter: drop-shadow(0 0 8px rgba(0, 102, 255, 0.5));
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: rotate(10deg);
+      filter: drop-shadow(0 0 12px rgba(0, 122, 255, 0.7));
+    }
   }
   
   h1 {
@@ -36,6 +50,15 @@ const Logo = styled(motion.div)`
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative;
+    
+    .highlight {
+      color: #00a8ff;
+      font-weight: 400;
+      font-size: 1.5rem;
+      margin-left: 0.2rem;
+      opacity: 0.9;
+    }
   }
 `;
 
@@ -57,6 +80,9 @@ const NavLink = styled(motion.a)`
   font-weight: 500;
   color: var(--light);
   position: relative;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
   
   &:after {
     content: '';
@@ -67,6 +93,13 @@ const NavLink = styled(motion.a)`
     height: 2px;
     background: var(--gradient);
     transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 122, 255, 0.5);
+  }
+  
+  &:hover {
+    background: rgba(0, 102, 255, 0.1);
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 8px rgba(0, 122, 255, 0.5);
   }
   
   &:hover:after {
@@ -85,10 +118,30 @@ const AddBotButton = styled(motion.a)`
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.5s ease;
+  }
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.6);
+    
+    &:before {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 `;
 
@@ -102,8 +155,10 @@ const Header = () => {
         transition={{ duration: 0.5 }}
       >
         <Logo>
-          <img src="/nara-logo.png" alt="Nara Bot Logo" />
-          <h1>Nara</h1>
+          <img src="/nara-logo.png" alt="Nara Virtual Bot Logo" />
+          <h1>
+            Nara <span className="highlight">Virtual</span>
+          </h1>
         </Logo>
       </LogoLink>
       

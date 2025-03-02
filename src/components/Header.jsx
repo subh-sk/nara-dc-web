@@ -39,6 +39,13 @@ const Logo = styled(motion.div)`
   }
 `;
 
+const LogoLink = styled(motion.a)`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+`;
+
 const Nav = styled.nav`
   display: flex;
   gap: 2rem;
@@ -88,21 +95,34 @@ const AddBotButton = styled(motion.a)`
 const Header = () => {
   return (
     <HeaderContainer>
-      <Logo
+      <LogoLink 
+        href="#home"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <img src="/nara-logo.png" alt="Nara Bot Logo" />
-        <h1>Nara</h1>
-      </Logo>
+        <Logo>
+          <img src="/nara-logo.png" alt="Nara Bot Logo" />
+          <h1>Nara</h1>
+        </Logo>
+      </LogoLink>
       
       <Nav>
+        <NavLink
+          href="#home"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          Home
+        </NavLink>
+        
         <NavLink
           href="#features"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.5, delay: 0.15 }}
           whileHover={{ scale: 1.05 }}
         >
           Features

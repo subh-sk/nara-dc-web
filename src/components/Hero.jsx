@@ -209,22 +209,24 @@ const Hero = () => {
             />
             
             {/* Floating icons around the bot image */}
-            {[...Array(5)].map((_, i) => (
+            {[...Array(12)].map((_, i) => (
               <FloatingIcon
                 key={i}
                 style={{
-                  top: `${Math.random() * 100}%`,
-                  left: `${Math.random() * 100}%`,
-                  fontSize: `${Math.random() * 20 + 10}px`
+                  top: `${Math.random() * 120 - 10}%`,
+                  left: `${Math.random() * 120 - 10}%`,
+                  fontSize: `${Math.random() * 30 + 15}px`,
+                  opacity: Math.random() * 0.5 + 0.3
                 }}
                 animate={{
-                  y: [0, Math.random() * 30 - 15, 0],
-                  x: [0, Math.random() * 30 - 15, 0],
-                  rotate: [0, 360],
+                  y: [0, Math.random() * 50 - 25, 0],
+                  x: [0, Math.random() * 50 - 25, 0],
+                  rotate: [0, Math.random() > 0.5 ? 360 : -360],
+                  scale: [1, Math.random() * 0.4 + 0.8, 1]
                 }}
                 transition={{
                   repeat: Infinity,
-                  duration: Math.random() * 5 + 3,
+                  duration: Math.random() * 8 + 4,
                   ease: "easeInOut"
                 }}
               >

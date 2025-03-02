@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { FaGamepad, FaMicrophone, FaMusic, FaRobot, FaShieldAlt, FaTools } from 'react-icons/fa';
+import { IconContext } from 'react-icons';
+import { FaGamepad, FaLaugh, FaMicrophone, FaMusic, FaRobot, FaShieldAlt, FaStar, FaTools } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const CommandsSection = styled.section`
@@ -416,17 +417,221 @@ const Commands = () => {
       icon: <FaMicrophone size={28} />,
       commands: [
         {
-          name: "laugh",
-          syntax: "laugh",
+          name: "join",
+          syntax: "join",
+          description: "Joins the voice channel you are in."
+        },
+        {
+          name: "speak",
+          syntax: "speak <text>",
+          description: "Speak the provided text in the voice channel."
+        }
+      ]
+    },
+    {
+      name: "Fun",
+      description: "Exciting commands for entertaining interactions.",
+      icon: <FaLaugh size={28} />,
+      commands: [
+        {
+          name: "echo",
+          syntax: "echo <message>",
+          description: "Sends the message provided by the user."
+        },
+        {
+          name: "advice",
+          syntax: "advice",
+          description: "Shares a random advice."
+        },
+        {
+          name: "compliment",
+          syntax: "compliment [user=<you>]",
+          description: "Shares a random compliment."
+        },
+        {
+          name: "nationalize",
+          syntax: "nationalize <name>",
+          description: "Guesses someone's nationality by their name"
+        },
+        {
+          name: "picture",
+          syntax: "picture <query>",
+          description: "Shows a picture of the requested query."
+        },
+        {
+          name: "wanted",
+          syntax: "wanted <user>",
+          description: "Shows a wanted poster of the requested user for fun."
+        },
+        {
+          name: "slap",
+          syntax: "slap <user>",
+          description: "Slaps the specified user."
+        },
+        {
+          name: "hug",
+          syntax: "hug <user>",
+          description: "Hugs the specified user."
+        },
+        {
+          name: "pat",
+          syntax: "pat <user>",
+          description: "Pats the specified user."
+        },
+        {
+          name: "kill",
+          syntax: "kill <user>",
+          description: "Kills (fun) the specified user."
+        },
+        {
+          name: "lick",
+          syntax: "lick <user>",
+          description: "Licks the specified user."
+        },
+        {
+          name: "wave",
+          syntax: "wave <user>",
+          description: "Waves at the specified user."
+        }
+      ]
+    },
+    {
+      name: "Extra Commands",
+      description: "Additional useful commands and features.",
+      icon: <FaStar size={28} />,
+      commands: [
+        {
+          name: "cricket",
+          syntax: "cricket",
+          description: "Shares the live cricket information."
+        },
+        {
+          name: "premium",
+          syntax: "premium",
+          description: "Lists the available subcommands."
+        },
+        {
+          name: "premium purchase",
+          syntax: "premium purchase",
           description: "No help found..."
         },
         {
-          name: "star",
-          syntax: "star",
+          name: "overview",
+          syntax: "overview",
           description: "No help found..."
+        },
+        {
+          name: "news",
+          syntax: "news <flags>",
+          description: "Shares the news from the BBC Services according to your need"
+        },
+        {
+          name: "affirmation",
+          syntax: "affirmation",
+          description: "Shares a random affirmation."
+        },
+        {
+          name: "invite",
+          syntax: "invite",
+          description: "Provides the link to add the app to your server."
+        },
+        {
+          name: "weather",
+          syntax: "weather <location>",
+          description: "Retrieves weather information in the specified location."
+        },
+        {
+          name: "uptime",
+          syntax: "uptime",
+          description: "Shows the duration for which the bot has been online since it was last started."
+        },
+        {
+          name: "device",
+          syntax: "device [member=<you>]",
+          description: "Gives the status of a user is in a Desktop or a Mobile."
+        },
+        {
+          name: "app",
+          syntax: "app",
+          description: "No help found..."
+        },
+        {
+          name: "app invites",
+          syntax: "app invites [user=<you>]",
+          description: "Gives a list of app invites."
+        },
+        {
+          name: "app info",
+          syntax: "app info",
+          description: "Retrieves the app information."
+        },
+        {
+          name: "app ping",
+          syntax: "app ping",
+          description: "Get instant insights into app stats."
+        },
+        {
+          name: "viewthumbnail",
+          syntax: "viewthumbnail <video_url>",
+          description: "Retrieves thumbnail of the specified url."
+        },
+        {
+          name: "help",
+          syntax: "help [command]",
+          description: "Shows help about the app, a command, or a category"
         }
       ]
     }
-      ]
-    }
+  ];
+
+  return (
+    <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
+      <CommandsSection id="commands">
+        <SectionTitle
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          Commands
+        </SectionTitle>
+        
+        <CommandsContainer
+          as={motion.div}
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
+          {commandCategories.map((category, index) => (
+            <CategoryContainer key={index} variants={item}>
+              <CategoryHeader>
+                <CategoryIcon>
+                  {category.icon}
+                </CategoryIcon>
+                <CategoryTitle>
+                  {category.name}
+                  <CategoryDescription>{category.description}</CategoryDescription>
+                </CategoryTitle>
+              </CategoryHeader>
+              
+              <CommandsGrid>
+                {category.commands.map((command, cmdIndex) => (
+                  <CommandCard key={cmdIndex}>
+                    <CommandName>{command.name}</CommandName>
+                    <CommandSyntax>{command.syntax}</CommandSyntax>
+                    <CommandDescription>{command.description}</CommandDescription>
+                  </CommandCard>
+                ))}
+              </CommandsGrid>
+            </CategoryContainer>
+          ))}
+        </CommandsContainer>
+      </CommandsSection>
+    </IconContext.Provider>
+  );
+};
+
+export default Commands;
+  
       

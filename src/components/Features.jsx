@@ -137,7 +137,7 @@ const item = {
   show: { opacity: 1, y: 0 }
 };
 
-const Features: React.FC = () => {
+const Features = () => {
   return (
     <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
     <FeaturesSection id="features">

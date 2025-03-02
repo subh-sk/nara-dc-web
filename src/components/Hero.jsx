@@ -143,9 +143,7 @@ const FloatingIcon = styled(motion.div)`
   z-index: -1;
 `;
 
-
-
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
     <IconContext.Provider value={{ style: { verticalAlign: 'middle' } }}>
       <HeroSection id="home">

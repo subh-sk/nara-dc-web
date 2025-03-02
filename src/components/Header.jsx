@@ -85,7 +85,7 @@ const AddBotButton = styled(motion.a)`
   }
 `;
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <HeaderContainer>
       <Logo
